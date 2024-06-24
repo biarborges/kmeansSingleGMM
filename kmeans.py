@@ -16,7 +16,7 @@ if embeddings.ndim == 3:
 num_clusters = 6
 
 # Inicializar o modelo K-means
-kmeans = KMeans(n_clusters=num_clusters, random_state=42)
+kmeans = KMeans(n_clusters=num_clusters)
 
 # Ajustar o modelo aos embeddings
 kmeans.fit(embeddings)
@@ -47,6 +47,7 @@ rand_index = rand_score(true_labels, labels)
 jaccard = jaccard_score(true_labels, labels, average='weighted')
 
 # Imprimir as métricas de avaliação
+print("K-Means")
 print(f"Accuracy: {accuracy:.4f}")
 print(f"F1-score: {f1:.4f}")
 print(f"Rand Index: {rand_index:.4f}")

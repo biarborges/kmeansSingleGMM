@@ -13,7 +13,7 @@ if embeddings.ndim == 3:
 
 num_components = 6  # Número de componentes para o GMM
 
-gmm = GaussianMixture(n_components=num_components, random_state=42, init_params='random_from_data')
+gmm = GaussianMixture(n_components=num_components, init_params='random_from_data')
 
 # Ajustar o modelo aos embeddings
 gmm.fit(embeddings)
@@ -43,6 +43,7 @@ rand_index = rand_score(true_labels, labels)
 jaccard = jaccard_score(true_labels, labels, average='weighted')
 
 # Imprimir as métricas de avaliação
+print("GMM")
 print(f"Accuracy: {accuracy:.4f}")
 print(f"F1-score: {f1:.4f}")
 print(f"Rand Index: {rand_index:.4f}")
