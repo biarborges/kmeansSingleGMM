@@ -14,7 +14,6 @@ def load_data():
 def preprocess_text(texts):
     preprocessed_texts = []
     for text in texts:
-        # Remover caracteres especiais, transformar para minúsculas e remover múltiplos espaços
         cleaned_text = re.sub(r'\s+', ' ', text.replace('*', '').lower()).strip()
         preprocessed_texts.append(cleaned_text)
     return preprocessed_texts
@@ -35,12 +34,12 @@ def vectorize_with_bertimbau(texts, max_length=128):
         for text in tqdm(texts, desc="Vetorizando textos"):
             inputs = tokenizer(text, padding=True, truncation=True, max_length=max_length, return_tensors="pt")
             outputs = model(**inputs)
-            embedding = outputs.last_hidden_state[:, 0, :].numpy()  # Pegar a representação do token CLS
+            embedding = outputs.last_hidden_state[:, 0, :].numpy()
             embeddings.append(embedding) 
 
-    embeddings = np.stack(embeddings, axis=0)  # Empilhar ao longo do eixo 0 para formar uma matriz 2D
+    embeddings = np.stack(embeddings, axis=0)  
 
-    np.save('embeddings.npy', embeddings)  # Salvar como matriz 2D
+    np.save('embeddings.npy', embeddings)  
     print("Embeddings salvos em embeddings.npy.")
 
     return embeddings
